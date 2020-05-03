@@ -1,47 +1,78 @@
 import * as PIXI from "pixi.js";
 import { OutlineFilter } from "pixi-filters";
 
-const config: { [index: string]: { border: number[]; inverse: boolean } } = {
+type Config = {
+  size?: number;
+  scaleX?: number;
+  scaleY?: number;
+  offsetX?: number;
+  offsetY?: number;
+  borders: number[];
+  inverse?: boolean;
+};
+
+const configs: { [index: string]: Config } = {
   residence: {
-    border: [10, 11, 10, 10],
-    inverse: false,
+    scaleX: 0.25,
+    scaleY: 0.25,
+    offsetY: 4,
+    borders: [3, 5, 2, 5],
   },
   company: {
-    border: [10, 11, 10, 10],
-    inverse: false,
+    scaleX: 0.25,
+    scaleY: 0.25,
+    borders: [3, 5, 2, 5],
   },
   station: {
-    border: [10, 11, 10, 10],
-    inverse: false,
+    scaleX: 0.25,
+    scaleY: 0.25,
+    offsetY: 4,
+    borders: [3, 5, 2, 5],
   },
   train: {
-    border: [11.5, 10, 10, 10],
-    inverse: false,
+    scaleX: 0.125 + 0.0625,
+    scaleY: 0.125,
+    offsetY: 1,
+    borders: [2, 4, 2, 3],
   },
   human: {
-    border: [10, 11, 10, 10],
+    scaleX: 0.125,
+    scaleY: 0.125,
+    borders: [2, 4, 2, 3],
     inverse: true,
   },
 };
 
-const sprite = (
-  app: PIXI.Application,
-  txt: PIXI.Texture,
-  conf: { border: number[]; inverse: boolean }
-) => {
+const sprite = (app: PIXI.Application, txt: PIXI.Texture, conf: Config) => {
   const s = new PIXI.Sprite(txt);
-  s.x = app.view.width / 2;
-  s.y = app.view.height / 2;
-  s.anchor.set(0.5, 0.5);
+  const sum = conf.borders.reduce((p, n) => p + n);
   if (conf.inverse) {
-    s.scale.x = -1;
+    s.anchor.set(1, 0);
+    s.localTransform.scale(-1, 1);
   }
 
-  s.filters = conf.border.map((w, i) => {
+  s.localTransform
+    .scale(conf.scaleX ?? 1, conf.scaleY ?? 1)
+    .translate(sum, sum)
+    .translate(conf.offsetX ?? 0, conf.offsetY ?? 0);
+
+  //s.setTransform(0, 0, conf.scale ?? 1, conf.scale ?? 1);
+
+  //s.scale.set(conf.scale ?? 1, conf.scale ?? 1);
+
+  // s.setTransform(
+  //   sum + (conf.offsetX ?? 0) + (conf.inverse ? 1 : 0) * 256,
+  //   sum + (conf.offsetY ?? 0),
+  //   (conf.inverse ? -1 : 0) + conf.scale ?? 1,
+  //   conf.scale ?? 1
+  // );
+
+  s.filters = conf.borders.map((w, i) => {
     const outline = new OutlineFilter(w, i % 2 ? 0xffffff : 0x000000, 1);
     outline.padding = w;
     return outline;
   });
+
   return s;
 };
 
@@ -55,17 +86,19 @@ const download = (app: PIXI.Application, res: string) => {
   return div;
 };
 
-Object.entries(config).forEach(([typ, conf]) => {
+Object.entries(configs).forEach(([typ, conf]) => {
   const app = new PIXI.Application({
-    width: 512,
-    height: 512,
     transparent: true,
     preserveDrawingBuffer: true,
   });
   app.view.id = `${typ}.png`;
 
   app.loader.add(typ, `img/${typ}.png`).load((_, res) => {
-    app.stage.addChild(sprite(app, res[typ].texture, conf));
+    const txt = res[typ].texture;
+    const sum = conf.borders.reduce((p, n) => p + n);
+    app.view.width = txt.width * (conf.scaleX ?? 1) + sum * 2;
+    app.view.height = txt.height * (conf.scaleY ?? 1) + sum * 2;
+    app.stage.addChild(sprite(app, txt, conf));
     app.renderer.render(app.stage);
     document.body.appendChild(download(app, typ));
   });

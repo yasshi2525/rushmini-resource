@@ -7,6 +7,8 @@ type Config = {
   scaleY?: number;
   offsetX?: number;
   offsetY?: number;
+  stretchX?: number;
+  stretchY?: number;
   borders: number[];
   inverse?: boolean;
 };
@@ -30,9 +32,10 @@ const configs: { [index: string]: Config } = {
     borders: [3, 5, 2, 5],
   },
   train: {
-    scaleX: 0.125 + 0.0625,
-    scaleY: 0.125,
-    offsetY: 1,
+    scaleX: 0.25 - 0.0625,
+    scaleY: 0.25 - 0.0625,
+    stretchY: 0.75,
+    offsetY: 14,
     borders: [2, 4, 2, 3],
   },
   human: {
@@ -53,19 +56,9 @@ const sprite = (app: PIXI.Application, txt: PIXI.Texture, conf: Config) => {
 
   s.localTransform
     .scale(conf.scaleX ?? 1, conf.scaleY ?? 1)
+    .scale(conf.stretchX ?? 1, conf.stretchY ?? 1)
     .translate(sum, sum)
     .translate(conf.offsetX ?? 0, conf.offsetY ?? 0);
-
-  //s.setTransform(0, 0, conf.scale ?? 1, conf.scale ?? 1);
-
-  //s.scale.set(conf.scale ?? 1, conf.scale ?? 1);
-
-  // s.setTransform(
-  //   sum + (conf.offsetX ?? 0) + (conf.inverse ? 1 : 0) * 256,
-  //   sum + (conf.offsetY ?? 0),
-  //   (conf.inverse ? -1 : 0) + conf.scale ?? 1,
-  //   conf.scale ?? 1
-  // );
 
   s.filters = conf.borders.map((w, i) => {
     const outline = new OutlineFilter(w, i % 2 ? 0xffffff : 0x000000, 1);
@@ -81,7 +74,7 @@ const download = (app: PIXI.Application, res: string) => {
   const a = document.createElement("a");
   a.text = `${res} をダウンロード`;
   a.href = app.view.toDataURL();
-  a.download = `${res}.png`;
+  a.download = `${res}_image.png`;
   div.appendChild(a);
   return div;
 };

@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rimraf ./build ./dist && webpack --mode production",
-    "start": "rimraf ./build ./dist && webpack-dev-server",
-    "clean": "rimraf ./build ./dist"
+    "build": "rimraf ./build && webpack --mode production",
+    "start": "webpack-dev-server",
+    "clean": "rimraf ./build"
   },
   "author": "yasshi2525",
   "license": "MIT",

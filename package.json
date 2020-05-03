@@ -2,7 +2,7 @@
   "name": "rushmini-resource",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "build/main.js",
   "scripts": {
     "build": "rimraf ./build && webpack --mode production",
     "start": "webpack-dev-server",

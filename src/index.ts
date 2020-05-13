@@ -1,9 +1,11 @@
+import "./app.css";
 import * as PIXI from "pixi.js";
 import genBasic from "./basic";
 import genCandidate from "./candidate";
 import genCovered from "./covered";
+import { genEnabledBonus, genDisabledBonus } from "./bonus";
 
-const keys = ["residence", "company", "station", "train", "human"];
+const keys = ["residence", "company", "station", "train", "human", "rail"];
 const generators: {
   [index: string]: (
     app: PIXI.Application,
@@ -14,7 +16,13 @@ const generators: {
     width: number;
     height: number;
   };
-} = { basic: genBasic, candidate: genCandidate, covered: genCovered };
+} = {
+  bonus_enabled: genEnabledBonus,
+  bonus_disabled: genDisabledBonus,
+  basic: genBasic,
+  candidate: genCandidate,
+  covered: genCovered,
+};
 
 const download = (app: PIXI.Application, suffix: string, res: string) => {
   const div = document.createElement("div");
@@ -30,7 +38,8 @@ const download = (app: PIXI.Application, suffix: string, res: string) => {
 };
 
 const app = new PIXI.Application({
-  transparent: true,
+  backgroundColor: 0xaaaaaa,
+  //transparent: true,
   preserveDrawingBuffer: true,
 });
 

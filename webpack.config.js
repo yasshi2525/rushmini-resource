@@ -7,10 +7,16 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin(),
-    new CopyPlugin([{ from: "img", to: "img" }]),
+    new CopyPlugin([
+      { from: "img", to: "img" },
+      { from: "font", to: "font" },
+    ]),
   ],
   module: {
-    rules: [{ test: /\.ts/, use: "ts-loader" }],
+    rules: [
+      { test: /\.ts/, use: "ts-loader" },
+      { test: /\.css$/i, use: ["style-loader", "css-loader"] },
+    ],
   },
   resolve: { extensions: [".js", ".ts"] },
   output: {

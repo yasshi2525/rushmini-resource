@@ -117,7 +117,7 @@ const createIcon = (conf: Config, txt: PIXI.Texture, enabled: boolean) => {
   return sprite;
 };
 
-const resolusion = 4;
+const resolusion = 2;
 
 /**
  * テキスト

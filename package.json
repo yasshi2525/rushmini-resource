@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf ./build && webpack --mode production",
     "start": "webpack-dev-server",
-    "font": "bmpfont-generator -c \"+-0123456789\" -H 20 -S \"#ffffff\" -F \"#ff0000\" ./font/rounded-mplus-1p-heavy.ttf dist/score_negative.png && bmpfont-generator -c \"+-0123456789\" -H 20 -S \"#ffffff\" -F \"#000000\" ./font/rounded-mplus-1p-heavy.ttf dist/score_positive.png",
+    "font": "bmpfont-generator -c \"SCORETIME:0123456789\" -H 35 -S \"#ffffff\" -F \"#000000\" ./font/rounded-mplus-1p-heavy.ttf dist/score_main.png && bmpfont-generator -c \"+-0123456789\" -H 20 -S \"#ffffff\" -F \"#ff0000\" ./font/rounded-mplus-1p-heavy.ttf dist/score_negative.png && bmpfont-generator -c \"+-0123456789\" -H 20 -S \"#ffffff\" -F \"#000000\" ./font/rounded-mplus-1p-heavy.ttf dist/score_positive.png",
     "clean": "rimraf ./build"
   },
   "author": "yasshi2525",

@@ -5,6 +5,7 @@ import genCandidate from "./candidate";
 import genCovered from "./covered";
 import { genEnabledBonus, genDisabledBonus } from "./bonus";
 import createFrame from "./frame";
+import createText from "./text";
 
 const keys = ["residence", "company", "station", "train", "human", "rail"];
 
@@ -56,6 +57,7 @@ const render = (
 };
 
 const app = new PIXI.Application({
+  //backgroundColor: 0xaaaaaa,
   transparent: true,
   preserveDrawingBuffer: true,
 });
@@ -73,4 +75,6 @@ app.loader.load((_, res) => {
   });
 
   render(app, "main", "frame", createFrame(0.8, 0.8));
+  render(app, "txt", "title", createText("出勤のお時間です！", 80));
+  render(app, "txt", "bonus", createText("ボーナスを1つ選んでください", 30));
 });

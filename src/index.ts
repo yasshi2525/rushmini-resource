@@ -6,6 +6,7 @@ import genCovered from "./covered";
 import { genEnabledBonus, genDisabledBonus } from "./bonus";
 import createFrame from "./frame";
 import createText from "./text";
+import createBitmapFont from "./bitmap_font";
 
 const keys = ["residence", "company", "station", "train", "human", "rail"];
 
@@ -13,6 +14,7 @@ type SpriteResult = {
   sprite: PIXI.DisplayObject;
   width: number;
   height: number;
+  glyph?: Object;
 };
 
 const generators: {
@@ -53,6 +55,15 @@ const render = (
   app.view.height = sprite.height;
   app.renderer.render(app.stage);
   document.body.appendChild(download(app, suffix, key));
+  if (sprite.glyph) {
+    const a = document.createElement("a");
+    a.text = "glyph";
+    a.download = `${key}_${suffix}_glyphs.json`;
+    a.href =
+      "data:text/json;charset=utf-8," +
+      encodeURIComponent(JSON.stringify(sprite.glyph));
+    document.body.appendChild(a);
+  }
   app.stage.removeChildren();
 };
 
@@ -77,4 +88,35 @@ app.loader.load((_, res) => {
   render(app, "main", "frame", createFrame(0.8, 0.8));
   render(app, "txt", "title", createText("出勤のお時間です！", 80));
   render(app, "txt", "bonus", createText("ボーナスを1つ選んでください", 30));
+  render(
+    app,
+    "txt",
+    "rollback",
+    createText("やりなおしてください", 30, 0xff0000)
+  );
+  render(app, "txt", "available", createText("しばらくお待ちください...", 30));
+  render(
+    app,
+    "txt",
+    "build",
+    createText("スワイプorドラッグ＆ドロップで路線を敷こう！", 25)
+  );
+  render(
+    app,
+    "main",
+    "score",
+    createBitmapFont("TIME SCORE:0123456789", 0x000000, 20)
+  );
+  render(
+    app,
+    "positive",
+    "score",
+    createBitmapFont("+0123456789", 0x000000, 15)
+  );
+  render(
+    app,
+    "negative",
+    "score",
+    createBitmapFont("-0123456789", 0xff0000, 15)
+  );
 });

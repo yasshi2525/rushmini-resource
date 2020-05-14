@@ -117,6 +117,8 @@ const createIcon = (conf: Config, txt: PIXI.Texture, enabled: boolean) => {
   return sprite;
 };
 
+const resolusion = 4;
+
 /**
  * テキスト
  * @param conf
@@ -125,18 +127,22 @@ const createIcon = (conf: Config, txt: PIXI.Texture, enabled: boolean) => {
  */
 const createText = (conf: Config, txt: PIXI.Texture, enabled: boolean) => {
   const style = new PIXI.TextStyle({
-    fontFamily: "mplus",
-    fontSize: fontSize,
+    fontFamily: "mplusP",
+    fontSize: fontSize * resolusion,
   });
 
   const top = new PIXI.Text(conf.topText, style);
-  top.localTransform.translate(outBorder * 4, outBorder * 2);
+  top.localTransform
+    .scale(1 / resolusion, 1 / resolusion)
+    .translate(outBorder * 4, outBorder * 2);
 
   const buttom = new PIXI.Text(conf.bottomText, style);
-  buttom.localTransform.translate(
-    txt.width * (conf.scale ?? 1) - fontSize * 2 - outBorder * 4,
-    txt.height * (conf.scale ?? 1) - fontSize - outBorder * 5
-  );
+  buttom.localTransform
+    .scale(1 / resolusion, 1 / resolusion)
+    .translate(
+      txt.width * (conf.scale ?? 1) - fontSize * 2 - outBorder * 4,
+      txt.height * (conf.scale ?? 1) - fontSize - outBorder * 5
+    );
 
   return [top, buttom].map((t) => {
     t.style.fill = enabled ? 0x006400 : 0xd3d3d3;

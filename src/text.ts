@@ -1,9 +1,8 @@
 import * as PIXI from "pixi.js";
 import { OutlineFilter } from "pixi-filters";
 
-const resolustion = 1;
-
 const createText = (text: string, size: number, color: number = 0x000000) => {
+  const resolustion = size > 30 ? 1 : 2;
   const border = size / 8;
   const style = new PIXI.TextStyle({
     fontFamily: "mplusP",

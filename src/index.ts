@@ -99,7 +99,28 @@ app.loader.load((_, res) => {
     app,
     "txt",
     "build",
-    createText("スワイプorドラッグ＆ドロップで路線を敷こう！", 25)
+    createText("路線をスワイプorドラッグ＆ドロップで敷こう！", 25)
+  );
+  render(
+    app,
+    "txt",
+    "station",
+    createText("線路をタップorクリックして新駅を建設しよう！", 25)
+  );
+  render(
+    app,
+    "txt",
+    "branch",
+    createText(
+      "分岐させたい駅からスワイプorドラッグ＆ドロップして延伸しよう！",
+      20
+    )
+  );
+  render(
+    app,
+    "txt",
+    "residence",
+    createText("マップをタップorクリックして住宅を建設しよう！", 25)
   );
   render(
     app,

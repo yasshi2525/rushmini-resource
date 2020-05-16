@@ -5,6 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "build": "rimraf ./build && webpack --mode production",
+    "audio": "complete-audio audio/start.wav audio/game.mp3 audio/end.wav -f",
     "start": "webpack-dev-server",
     "clean": "rimraf ./build"
   },
@@ -26,6 +27,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@akashic/complete-audio": "^0.2.5",
     "canvas": "^2.6.1",
     "pixi-filters": "^3.1.1"
   }

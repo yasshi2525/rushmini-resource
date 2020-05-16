@@ -7,8 +7,18 @@ import { genEnabledBonus, genDisabledBonus } from "./bonus";
 import createFrame from "./frame";
 import createText from "./text";
 import createBitmapFont from "./bitmap_font";
+import createTitle from "./titile";
 
-const keys = ["residence", "company", "station", "train", "human", "rail"];
+const keys = [
+  "residence",
+  "company",
+  "station",
+  "train",
+  "human",
+  "rail",
+  "finger",
+  "finger_touch",
+];
 
 type SpriteResult = {
   sprite: PIXI.DisplayObject;
@@ -87,6 +97,7 @@ app.loader.load((_, res) => {
 
   render(app, "main", "frame", createFrame(0.8, 0.8));
   render(app, "txt", "title", createText("出勤のお時間です！", 80));
+  render(app, "img", "title", createTitle(app));
   render(app, "txt", "bonus", createText("ボーナスを1つ選んでください", 30));
   render(
     app,

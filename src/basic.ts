@@ -44,6 +44,20 @@ const configs: { [index: string]: Config } = {
     borders: [2, 4, 2, 3],
     inverse: true,
   },
+  finger: {
+    scaleX: 0.25,
+    scaleY: 0.25,
+    offsetX: 14,
+    offsetY: 24,
+    stretchX: 0.8,
+    stretchY: 0.8,
+    borders: [0, 5, 4, 10],
+  },
+  finger_touch: {
+    scaleX: 0.25,
+    scaleY: 0.25,
+    borders: [0, 5, 5, 10],
+  },
 };
 
 const genBasic = (_, txt: PIXI.Texture, key: string) => {

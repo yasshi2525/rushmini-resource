@@ -133,11 +133,25 @@ app.loader.load((_, res) => {
     "residence",
     createText("マップをタップorクリックして住宅を建設しよう！", 25)
   );
+  [
+    "住民",
+    "出勤成功",
+    "電車通勤",
+    "電車待ち",
+    "駅入場待ち",
+    "電車混雑",
+    "改札混雑",
+    "ホーム混雑",
+  ].forEach((label, idx) =>
+    render(app, "txt", `statics_${idx}`, createText(label, 20))
+  );
+  render(app, "txt", "ending", createText("終了！", 60));
+  render(app, "txt", "replay", createText("もう一回", 40));
   render(
     app,
     "main",
     "score",
-    createBitmapFont("TIME SCORE:0123456789", 0x000000, 20)
+    createBitmapFont("TIME SCORE:0123456789人秒％", 0x000000, 20)
   );
   render(
     app,

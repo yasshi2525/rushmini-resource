@@ -23,20 +23,20 @@ const createBitmapFont = (chars: string, color: number, size: number) => {
       .scale(1 / resolusion, 1 / resolusion)
       .translate((size - text.width / resolusion) / 2, 0)
       .translate(border / 2, 0)
-      .translate((size + border) * idx, 0);
+      .translate((size + border * 2) * idx, 0);
     container.addChild(text);
     glyph.map[c.charCodeAt(0)] = {
-      x: Math.floor((size + border) * idx),
+      x: Math.floor((size + border * 2) * idx),
       y: 0,
-      width: Math.floor(size + border),
-      height: Math.floor(container.height + border),
+      width: Math.floor(size + border * 2),
+      height: Math.floor(container.height + border * 2),
     };
   });
-  glyph.height = Math.floor(container.height + border);
+  glyph.height = Math.floor(container.height + border * 2);
   return {
     sprite: container,
-    width: chars.length * (size + border),
-    height: container.height + border,
+    width: chars.length * (size + border * 2),
+    height: container.height + border * 2,
     glyph,
   };
 };

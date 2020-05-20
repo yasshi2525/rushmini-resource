@@ -18,6 +18,7 @@ const keys = [
   "rail",
   "finger",
   "finger_touch",
+  "full",
 ];
 
 type SpriteResult = {
@@ -136,7 +137,7 @@ app.loader.load((_, res) => {
   [
     "住民",
     "出勤成功",
-    "電車通勤",
+    "乗車時間",
     "電車待ち",
     "駅入場待ち",
     "電車混雑",

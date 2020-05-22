@@ -63,6 +63,16 @@ const configs: { [index: string]: Config } = {
     scaleY: 0.05,
     borders: [1, 2, 1, 2],
   },
+  bored: {
+    scaleX: 0.4,
+    scaleY: 0.4,
+    borders: [3, 4, 3, 4],
+  },
+  arrow: {
+    scaleX: 0.125,
+    scaleY: 0.1,
+    borders: [5, 5],
+  },
 };
 
 const genBasic = (_, txt: PIXI.Texture, key: string) => {

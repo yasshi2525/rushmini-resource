@@ -6,6 +6,7 @@ const resolusion = 4;
 const createBitmapFont = (chars: string, color: number, size: number) => {
   const container = new PIXI.Container();
   const border = size / 6;
+  const padding = 1;
   const style = new PIXI.TextStyle({
     fontFamily: "mplus",
     fontSize: size * resolusion,
@@ -23,10 +24,11 @@ const createBitmapFont = (chars: string, color: number, size: number) => {
       .scale(1 / resolusion, 1 / resolusion)
       .translate((size - text.width / resolusion) / 2, 0)
       .translate(border / 2, 0)
-      .translate((size + border * 2) * idx, 0);
+      .translate(padding, padding * 2)
+      .translate((size + (border + padding) * 2) * idx, 0);
     container.addChild(text);
     glyph.map[c.charCodeAt(0)] = {
-      x: Math.floor((size + border * 2) * idx),
+      x: Math.floor((size + (border + padding) * 2) * idx),
       y: 0,
       width: Math.floor(size + border * 2),
       height: Math.floor(container.height + border * 2),
@@ -35,7 +37,7 @@ const createBitmapFont = (chars: string, color: number, size: number) => {
   glyph.height = Math.floor(container.height + border * 2);
   return {
     sprite: container,
-    width: chars.length * (size + border * 2),
+    width: chars.length * (size + (border + padding) * 2),
     height: container.height + border * 2,
     glyph,
   };

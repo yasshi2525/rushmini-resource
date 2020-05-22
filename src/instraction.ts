@@ -37,6 +37,9 @@ const createRail = (app: PIXI.Application) => {
       .translate(i * 60, 50);
     rCon.addChild(rail);
   }
+  const f = new OutlineFilter(5, 0xffffff, 1);
+  f.padding = 5;
+  rCon.filters = [f];
   rCon.localTransform.translate(150, 0);
 
   const st2 = genBasic(app, res["station"].texture, "station").sprite;

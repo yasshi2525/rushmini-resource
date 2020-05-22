@@ -90,7 +90,6 @@ const app = new PIXI.Application({
 keys.forEach((key) => app.loader.add(key, `img/${key}.png`));
 
 app.loader.load((_, res) => {
-  render(app, "img", "instruction", createInstruction(app));
   keys.forEach((key) => {
     Object.entries(generators).forEach(([suffix, gen]) => {
       const sprite = gen(app, res[key].texture, key);
@@ -102,6 +101,8 @@ app.loader.load((_, res) => {
   render(app, "main", "frame", createFrame(0.8, 0.8));
   render(app, "txt", "title", createText("出勤のお時間です！", 80));
   render(app, "img", "title", createTitle(app));
+  render(app, "img", "instruction", createInstruction(app));
+  render(app, "txt", "start", createText("タップorクリックでスタート", 25));
   render(app, "txt", "bonus", createText("ボーナスを1つ選んでください", 30));
   render(
     app,

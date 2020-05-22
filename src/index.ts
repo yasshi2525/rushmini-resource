@@ -22,6 +22,8 @@ const keys = [
   "full",
   "bored",
   "arrow",
+  "help",
+  "close",
 ];
 
 type SpriteResult = {

@@ -73,6 +73,16 @@ const configs: { [index: string]: Config } = {
     scaleY: 0.1,
     borders: [5, 5],
   },
+  help: {
+    scaleX: 0.5,
+    scaleY: 0.5,
+    borders: [3, 4, 3, 4],
+  },
+  close: {
+    scaleX: 0.25,
+    scaleY: 0.25,
+    borders: [3, 4, 3, 4],
+  },
 };
 
 const genBasic = (_, txt: PIXI.Texture, key: string) => {

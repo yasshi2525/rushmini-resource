@@ -9,6 +9,8 @@ import createText from "./text";
 import createBitmapFont from "./bitmap_font";
 import createTitle from "./titile";
 import createInstruction from "./instraction";
+import createBonusIcon from "./bonus_icon";
+import createMinimizeIcon from "./minimize";
 
 const keys = [
   "residence",
@@ -24,6 +26,7 @@ const keys = [
   "arrow",
   "help",
   "close",
+  "bonus",
 ];
 
 type SpriteResult = {
@@ -90,7 +93,6 @@ const app = new PIXI.Application({
 });
 
 keys.forEach((key) => app.loader.add(key, `img/${key}.png`));
-
 app.loader.load((_, res) => {
   keys.forEach((key) => {
     Object.entries(generators).forEach(([suffix, gen]) => {
@@ -100,6 +102,8 @@ app.loader.load((_, res) => {
       }
     });
   });
+  render(app, "img", "minimize", createMinimizeIcon(app));
+  render(app, "icon", "bonus", createBonusIcon(app));
   render(app, "main", "frame", createFrame(0.8, 0.8));
   render(app, "txt", "title", createText("出勤のお時間です！", 80));
   render(app, "img", "title", createTitle(app));

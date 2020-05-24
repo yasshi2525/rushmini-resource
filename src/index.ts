@@ -11,6 +11,7 @@ import createTitle from "./titile";
 import createInstruction from "./instraction";
 import createBonusIcon from "./bonus_icon";
 import createMinimizeIcon from "./minimize";
+import createUndoIcon from "./undo";
 
 const keys = [
   "residence",
@@ -27,6 +28,7 @@ const keys = [
   "help",
   "close",
   "bonus",
+  "undo",
 ];
 
 type SpriteResult = {
@@ -104,6 +106,7 @@ app.loader.load((_, res) => {
   });
   render(app, "img", "minimize", createMinimizeIcon(app));
   render(app, "icon", "bonus", createBonusIcon(app));
+  render(app, "img", "undo", createUndoIcon(app));
   render(app, "main", "frame", createFrame(0.8, 0.8));
   render(app, "txt", "title", createText("出勤のお時間です！", 80));
   render(app, "img", "title", createTitle(app));

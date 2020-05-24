@@ -88,6 +88,11 @@ const configs: { [index: string]: Config } = {
     scaleY: 0.09,
     borders: [0.25],
   },
+  undo: {
+    scaleX: 0.08,
+    scaleY: 0.08,
+    borders: [0.5],
+  },
 };
 
 const genBasic = (_, txt: PIXI.Texture, key: string) => {

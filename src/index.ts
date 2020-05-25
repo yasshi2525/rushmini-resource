@@ -12,6 +12,7 @@ import createInstruction from "./instraction";
 import createBonusIcon from "./bonus_icon";
 import createMinimizeIcon from "./minimize";
 import createUndoIcon from "./undo";
+import { createSpeakerOn, createSpeakerOff } from "./speaker";
 
 const keys = [
   "residence",
@@ -29,6 +30,8 @@ const keys = [
   "close",
   "bonus",
   "undo",
+  "speaker_on",
+  "speaker_off",
 ];
 
 type SpriteResult = {
@@ -107,6 +110,8 @@ app.loader.load((_, res) => {
   render(app, "img", "minimize", createMinimizeIcon(app));
   render(app, "icon", "bonus", createBonusIcon(app));
   render(app, "img", "undo", createUndoIcon(app));
+  render(app, "img", "speaker_on", createSpeakerOn(app));
+  render(app, "img", "speaker_off", createSpeakerOff(app));
   render(app, "main", "frame", createFrame(0.8, 0.8));
   render(app, "txt", "title", createText("出勤のお時間です！", 80));
   render(app, "img", "title", createTitle(app));

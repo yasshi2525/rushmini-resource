@@ -93,6 +93,16 @@ const configs: { [index: string]: Config } = {
     scaleY: 0.08,
     borders: [0.5],
   },
+  speaker_on: {
+    scaleX: 0.1,
+    scaleY: 0.1,
+    borders: [0],
+  },
+  speaker_off: {
+    scaleX: 0.1,
+    scaleY: 0.1,
+    borders: [0],
+  },
 };
 
 const genBasic = (_, txt: PIXI.Texture, key: string) => {

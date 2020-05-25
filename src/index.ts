@@ -163,6 +163,24 @@ app.loader.load((_, res) => {
   render(app, "txt", "replay", createText("もう一回", 40));
   render(
     app,
+    "txt",
+    "traindiscardbug_20200525_1",
+    createText("線路の敷き方によって、電車の配置数が約3割程度", 25, 0xff0000)
+  );
+  render(
+    app,
+    "txt",
+    "traindiscardbug_20200525_2",
+    createText("少なくなってしまう問題を修正しました…ごめん！", 25, 0xff0000)
+  );
+  render(
+    app,
+    "txt",
+    "traindiscardbug_20200525_3",
+    createText("2020/05/25 22:00修正", 15, 0xff0000)
+  );
+  render(
+    app,
     "main",
     "score",
     createBitmapFont("TIME SCORE:0123456789人秒％", 0x000000, 20)

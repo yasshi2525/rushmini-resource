@@ -13,6 +13,7 @@ import createBonusIcon from "./bonus_icon";
 import createMinimizeIcon from "./minimize";
 import createUndoIcon from "./undo";
 import { createSpeakerOn, createSpeakerOff } from "./speaker";
+import createThanks from "./thanks";
 
 const keys = [
   "residence",
@@ -202,4 +203,5 @@ app.loader.load((_, res) => {
     "score",
     createBitmapFont("-0123456789", 0xff0000, 15)
   );
+  render(app, "img", "thanks", createThanks(app));
 });

@@ -14,6 +14,7 @@ import createMinimizeIcon from "./minimize";
 import createUndoIcon from "./undo";
 import { createSpeakerOn, createSpeakerOff } from "./speaker";
 import createThanks from "./thanks";
+import { createCrowed1, createCrowed2, createCrowedTrain } from "./crowed";
 
 const keys = [
   "residence",
@@ -33,6 +34,8 @@ const keys = [
   "undo",
   "speaker_on",
   "speaker_off",
+  "crowed_level1",
+  "crowed_level2",
 ];
 
 type SpriteResult = {
@@ -108,6 +111,9 @@ app.loader.load((_, res) => {
       }
     });
   });
+  render(app, "img", "crowed_level1", createCrowed1(app));
+  render(app, "img", "crowed_level2", createCrowed2(app));
+  render(app, "img", "crowed_train", createCrowedTrain(app));
   render(app, "img", "minimize", createMinimizeIcon(app));
   render(app, "icon", "bonus", createBonusIcon(app));
   render(app, "img", "undo", createUndoIcon(app));

@@ -103,6 +103,16 @@ const configs: { [index: string]: Config } = {
     scaleY: 0.1,
     borders: [0],
   },
+  crowed_level1: {
+    scaleX: 0.3,
+    scaleY: 0.3,
+    borders: [1.5, 4, 1.5, 4],
+  },
+  crowed_level2: {
+    scaleX: 0.45,
+    scaleY: 0.45,
+    borders: [1.5, 5, 1.5, 4],
+  },
 };
 
 const genBasic = (_, txt: PIXI.Texture, key: string) => {

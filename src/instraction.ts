@@ -99,7 +99,7 @@ const createInstruction = (app: PIXI.Application) => {
   const res = app.loader.resources;
   const container = new PIXI.Container();
   const bored = createBored(app);
-  bored.localTransform.translate(25, 5);
+  bored.localTransform.translate(25, 20);
 
   const msg1 = createText("会社が遠い！", 45, 0x000000).sprite;
   msg1.localTransform.translate(300, 25);
@@ -118,17 +118,17 @@ const createInstruction = (app: PIXI.Application) => {
   msg4.localTransform.translate(350, 310);
 
   const payment = createPayment(app);
-  payment.localTransform.translate(25, 425);
+  payment.localTransform.translate(25, 400);
 
   const msg5 = createText("駅から降りると、", 25).sprite;
-  msg5.localTransform.translate(200, 430);
+  msg5.localTransform.translate(200, 405);
   const msg6 = createText("運賃の分＋得点", 25).sprite;
-  msg6.localTransform.translate(200, 470);
+  msg6.localTransform.translate(200, 445);
 
   const death = createDeath(app);
-  death.localTransform.translate(425, 440);
+  death.localTransform.translate(425, 415);
   const msg7 = createText("疲れ果てると-10", 25, 0xff0000).sprite;
-  msg7.localTransform.translate(510, 460);
+  msg7.localTransform.translate(510, 435);
 
   [
     bored,

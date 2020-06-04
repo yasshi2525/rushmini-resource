@@ -15,6 +15,8 @@ import createUndoIcon from "./undo";
 import { createSpeakerOn, createSpeakerOff } from "./speaker";
 import createThanks from "./thanks";
 import { createCrowed1, createCrowed2, createCrowedTrain } from "./crowed";
+import { createAdviceOn, createAdviceOff } from "./advice";
+import createPointer from "./pointer";
 
 const keys = [
   "residence",
@@ -36,6 +38,10 @@ const keys = [
   "speaker_off",
   "crowed_level1",
   "crowed_level2",
+  "instructor",
+  "advice_mode",
+  "advice_on",
+  "advice_off"
 ];
 
 type SpriteResult = {
@@ -173,6 +179,28 @@ app.loader.load((_, res) => {
   );
   render(app, "txt", "ending", createText("終了！", 60));
   render(app, "txt", "replay", createText("もう一回", 40));
+  render(app, "img", "advice_on", createAdviceOn(app));
+  render(app, "img", "advice_off", createAdviceOff(app));
+  render(app, "txt", "advice", createText("ガイド", 30));
+  render(app, "txt", "advice_init_1", createText("左上の住宅から右下の会社に向かって出勤しとるようじゃな。", 22));
+  render(app, "txt", "advice_init_2", createText("住宅から会社に向かって線路を敷いてあげるのじゃ！", 22));
+  render(app, "txt", "advice_rollback_1", createText("おやっ？ちゃんと住民が利用したくなるような位置に", 22));
+  render(app, "txt", "advice_rollback_2", createText("線路を敷いてあげているかの？", 22));
+  render(app, "txt", "advice_opening_1", createText("鉄道の開業おめでとう！乗客が目的駅に着くとスコアが入るのじゃ。", 22));
+  render(app, "txt", "advice_opening_2", createText("スコアがたまると鉄道を拡張できるぞい。", 22));
+  render(app, "txt", "advice_scored_1", createText("駅から降りたので運賃収入が手に入ったぞい！", 22));
+  render(app, "txt", "advice_scored_2", createText("", 22));
+  render(app, "txt", "advice_crowded_train_1", createText("おやっ？電車が満員で人を載せきれていないようじゃな…", 22));
+  render(app, "txt", "advice_crowded_train_2", createText("電車を増発して混雑を減らすのもアリじゃな！", 22));
+  render(app, "txt", "advice_despawn_1", createText("おやっ？疲れ切って帰ってしまったようじゃな…", 22));
+  render(app, "txt", "advice_despawn_2", createText("通勤に時間がかかりすぎていないか、チェックしてみるのじゃ。", 22));
+  render(app, "txt", "advice_crowded_station_train_1", createText("おやっ？駅が満員で行列ができているようじゃな…", 22));
+  render(app, "txt", "advice_crowded_station_train_2", createText("電車を増発して人の流れを良くするのもアリじゃな！", 22));
+  render(app, "txt", "advice_crowded_station_1", createText("おやっ？駅が満員で行列ができているようじゃな…", 22));
+  render(app, "txt", "advice_crowded_station_2", createText("新しく駅や支線を作って人を分散させるのもアリじゃな！", 22));
+  render(app, "txt", "advice_directed_1", createText("おやっ？電車を利用してくれていないようじゃな…", 22));
+  render(app, "txt", "advice_directed_2", createText("駅が遠かったり、路線が長すぎると不便で使ってもらえないようじゃ…", 22));
+  render(app, "img", "advice_pointer", createPointer(app))
   render(
     app,
     "txt",
